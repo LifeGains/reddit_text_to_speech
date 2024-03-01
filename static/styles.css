@@ -1,0 +1,108 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Overridden body styles for table.html */
+body.table-body {
+    display: block; /* Reset to default display */
+    height: auto; /* Allow the body height to grow with the content */
+    padding: 1rem; /* Optional: Add padding to the body for some spacing */
+    align-items: center;
+}
+
+.container {
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 50%;
+    max-width: 600px;
+}
+
+h1 {
+    color: #333;
+    font-size: 24px;
+}
+
+p {
+    color: #666;
+    line-height: 1.6;
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin: 15px 0 5px;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Add this to include padding in width */
+}
+
+button {
+    background: #ff4500;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #e03d00;
+}
+
+/* New styles for the table */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto; /* Allows horizontal scrolling on small devices */
+    overflow-y: visible; /* Ensure vertical overflow is visible */
+
+}
+
+.table {
+    margin-top: 10px; /* Adjust if the table header is being cut off */
+    width: 100%;
+    max-width: 100%; /* Limits the table width to be no more than 100% of its parent */
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+
+th, td {
+    border: 1px solid #dee2e6;
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    /* Remove 'white-space: nowrap;' to allow text wrapping */
+    text-align: left; /* Align text to the left, you can change as per your design */
+}
+
+/* Ensures that the table and its content scale down to fit the container */
+@media screen and (max-width: 768px) {
+    .table-responsive {
+        border: 0;
+    }
+}
+
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #999;
+    font-size: 14px;
+}

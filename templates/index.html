@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reddit to Audio Generator</title>
+    <!-- Add any additional CSS or JS links here -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Scratch your Itch of Becoming a Full Time TikTok Influencer</h1>
+        <p>Automatically convert reddit posts and comments into audio you can use for your TikTok or Youtube Shorts.</p>
+        
+        <!-- The form for eBook generation -->
+        <form action="/generate_table" method="post">
+            <label for="topic">Subreddit Name</label>
+            <input type="text" id="topic" name="subreddit_name" placeholder="askreddit, explainlikeimfive, showerthoughts">
+            
+            <label for="reader">Number of Posts</label>
+            <input type="number" id="reader" name="n_posts" placeholder="eg. 1, 5, 10">
+            
+            <label for="time_filter">Time Filter</label>
+            <input type="text" id="time_filter" name="time_filter" placeholder="eg. day, week, year, all time">
+
+            <button type="submit">Generate Audio</button>
+        </form>
+    </div>
+</body>
+</html>
