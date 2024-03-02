@@ -4,11 +4,17 @@ from flask import Flask, request, render_template, redirect, url_for, session, s
 import reddit_text_to_speech_v2_functionize  # This is the script converted from your Jupyter notebook
 import pandas as pd
 import sys
+import os
 sys.path.append('C:\\Users\\kevin\\Google Drive\\My Drive\\Github\\all-api-keys')
 import secret
 
 app = Flask(__name__)
-app.secret_key = secret.flask_secret_key
+# For production secret key defined as a environment variable
+# Get the secret key from the environment variable
+# 'default_secret_key' is only a placeholder value that will be replaced by whatever is in the render environment.
+app.secret_key = os.environ.get('secret_key', 'default_secret_key')
+# For local secret key
+# app.secret_key = secret.flask_secret_key
 
 @app.route('/')
 def index():
