@@ -16,19 +16,9 @@ sys.path.append('C:\\Users\\kevin\\Google Drive\\My Drive\\Github\\all-api-keys'
 
 # In[80]:
 
-
-# Save the current directory
-original_directory = 'C:\\Users\\kevin\\Google Drive\\My Drive\\Github\\Repos\\reddit_text_to_speech'
-
-# Switch to the new directory
-new_directory = 'C:\\Users\\kevin\\Google Drive\\My Drive\\Github\\all-api-keys'
-os.chdir(new_directory)
-
 # Your code that operates in the new directory goes here
-import secret
-
-# Switch back to the original directory
-os.chdir(original_directory)
+# local only
+# import secret
 
 
 # In[81]:
