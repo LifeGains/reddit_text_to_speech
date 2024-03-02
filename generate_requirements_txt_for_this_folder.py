@@ -5,4 +5,4 @@ import generate_requirements_txt
 
 output_file = os.getcwd() + "\\requirements.txt"
 print(output_file)
-generate_requirements_txt.generate_requirements(output_file)
+generate_requirements_txt.generate_requirements(os.getcwd(), output_file)
