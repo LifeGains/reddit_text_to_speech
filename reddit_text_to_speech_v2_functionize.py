@@ -33,12 +33,20 @@ os.chdir(original_directory)
 
 # In[81]:
 
-
-reddit = praw.Reddit(client_id = secret.reddit_client_id,
-                     client_secret=secret.reddit_secret_key,
-                     user_agent=secret.reddit_app_name,
-                     username=secret.reddit_username,
-                     password=secret.reddit_password)
+# for production
+reddit = praw.Reddit(
+    client_id=os.getenv('REDDIT_CLIENT_ID'),
+    client_secret=os.getenv('REDDIT_SECRET_KEY'),
+    user_agent=os.getenv('REDDIT_APP_NAME'),
+    username=os.getenv('REDDIT_USERNAME'),
+    password=os.getenv('REDDIT_PASSWORD')
+)
+# for local only
+# reddit = praw.Reddit(client_id = secret.reddit_client_id,
+#                      client_secret=secret.reddit_secret_key,
+#                      user_agent=secret.reddit_app_name,
+#                      username=secret.reddit_username,
+#                      password=secret.reddit_password)
 
 
 # # Pull Comments from Reddit Subreddits
@@ -222,7 +230,12 @@ df_to_csv(df)
 
 
 import elevenlabs
-elevenlabs.set_api_key(secret.eleven_labs_api_key)
+# for production
+eleven_labs_api_key = os.getenv('ELEVEN_LABS_API_KEY')
+elevenlabs.set_api_key(eleven_labs_api_key)
+
+# for local only
+# elevenlabs.set_api_key(secret.eleven_labs_api_key)
 
 
 # In[91]:
