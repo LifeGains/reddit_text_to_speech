@@ -1,10 +1,9 @@
-from flask import Flask, request, render_template, redirect, url_for, session, send_file, jsonify, make_response, flash
+from flask import Flask, request, render_template, redirect, url_for, session, send_file
 
 # We dont need to change this because the notebook increments.
 # Script converted from Jupyter notebook
 from reddit_text_to_speech_v3 import reddit_to_df, concatenate_q_and_all_comments, AudioHandler
 import pandas as pd
-import time
 import sys
 import os
 sys.path.append('C:\\Users\\kevin\\Google Drive\\My Drive\\Github\\all-api-keys')
@@ -15,8 +14,6 @@ app = Flask(__name__)
 # Get the secret key from the environment variable
 # 'default_secret_key' is only a placeholder value that will be replaced by whatever is in the render environment.
 app.secret_key = os.environ.get('secret_key', 'default_secret_key')
-# Turn on debug mode.
-app.debug = True
 # For local secret key
 # app.secret_key = secret.flask_secret_key
 
@@ -65,35 +62,12 @@ def generate_audio():
         content_list = df['Content'].tolist()
         
         # Generate the audio using the index
-        audio_handler = AudioHandler()
-        audio_handler.generate_audio(content_list, int(index), int(n_characters))
-        audio_handler.play_audio()
-
-        # Pause for 8 seconds
-        time.sleep(8)
-
-        # Save
-        # Does not work due to libraries.
-        # audio_handler.save_audio()
-
-        if audio_handler.audio_data is not None:
-            # Save the audio file to a temporary location on the server
-            file_path = 'temporary_audio.mp3'  # Change this path as needed
-            with open(file_path, 'wb') as f:
-                f.write(audio_handler.audio_data)
-
-            # Create a response to send the audio file to the client for download
-            response = make_response(send_file(file_path, as_attachment=True))
-            response.headers['Content-Disposition'] = 'attachment; filename=audio_file.mp3'
-
-            # Display message to user saying saved successfully!
-            flash("Audio saved successfully!")
-            
-            return response
-
-        # generate_ai_reading(content_list, int(index), int(n_characters))
-        # return jsonify({"message": "Audio generated and saved successfully."})
+        generate_ai_reading(content_list, int(index), int(n_characters))
+        return
     
+        # Todo: Send to user specified path:
+        # file_path = 'C:\\Users\\kevin\\Google Drive\\My Drive\\Github\\Repos\\reddit_text_to_speech\\your_audio_file.mp3'
+        # return send_file(file_path, as_attachment=True)
 
     else:
         return redirect(url_for('index'))
