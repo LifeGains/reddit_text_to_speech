@@ -10,23 +10,39 @@ import pandas as pd
 import re
 import sys
 sys.path.append('C:\\Users\\kevin\\Google Drive\\My Drive\\Github\\all-api-keys')
-# Your code that operates in the new directory goes here
-import secret
 
-# # Reddit API Setup
 
 # In[2]:
 
+
+# Your code that operates in the new directory goes here
+import secret
+
+
+# # Reddit API Setup
+
+# In[ ]:
+
+
+# for production
+reddit = praw.Reddit(
+    client_id=os.getenv('REDDIT_CLIENT_ID'),
+    client_secret=os.getenv('REDDIT_SECRET_KEY'),
+    user_agent=os.getenv('REDDIT_APP_NAME'),
+    username=os.getenv('REDDIT_USERNAME'),
+    password=os.getenv('REDDIT_PASSWORD')
+)
 
 
 # In[3]:
 
 
-reddit = praw.Reddit(client_id = secret.reddit_client_id,
-                     client_secret=secret.reddit_secret_key,
-                     user_agent=secret.reddit_app_name,
-                     username=secret.reddit_username,
-                     password=secret.reddit_password)
+# # local only
+# reddit = praw.Reddit(client_id = secret.reddit_client_id,
+#                      client_secret=secret.reddit_secret_key,
+#                      user_agent=secret.reddit_app_name,
+#                      username=secret.reddit_username,
+#                      password=secret.reddit_password)
 
 
 # # Pull Comments from Reddit Subreddits
@@ -210,7 +226,11 @@ df_to_csv(df)
 
 
 import elevenlabs
-elevenlabs.set_api_key(secret.eleven_labs_api_key)
+# for production
+eleven_labs_api_key = os.getenv('ELEVEN_LABS_API_KEY')
+elevenlabs.set_api_key(eleven_labs_api_key)
+# local only
+# elevenlabs.set_api_key(secret.eleven_labs_api_key)
 
 
 # In[13]:
